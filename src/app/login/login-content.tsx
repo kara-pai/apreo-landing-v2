@@ -38,7 +38,7 @@ export function LoginContent() {
     const dest =
       role === "employer"
         ? "/onboarding/employer"
-        : "/onboarding/employer"; // provider flow TBD
+        : "/onboarding/provider";
     router.push(dest);
   };
 
