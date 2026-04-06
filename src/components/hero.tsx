@@ -32,13 +32,13 @@ export function Hero() {
         {/* CTA Block */}
         <div className="md:col-span-4 md:row-span-1 bg-surface-container-highest p-6 rounded-xl flex flex-col justify-center gap-4">
           <a
-            href="#employers"
+            href="/login?role=employer"
             className="w-full bg-secondary-container text-on-secondary-container font-headline font-black py-4 rounded-xl hover:-translate-y-1 transition-transform back-out-easing shadow-lg text-center block"
           >
             Hire Apprentices
           </a>
           <a
-            href="#training-providers"
+            href="/login?role=provider"
             className="w-full border-2 border-primary text-primary font-headline font-black py-4 rounded-xl hover:bg-primary-container/10 transition-colors text-sm text-center block"
           >
             Partner as a Training Provider

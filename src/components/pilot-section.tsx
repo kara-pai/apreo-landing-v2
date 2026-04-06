@@ -1,5 +1,3 @@
-"use client";
-
 export function PilotSection() {
   return (
     <section className="py-24 px-4 md:px-8">
@@ -16,20 +14,12 @@ export function PilotSection() {
             <p className="text-on-secondary-container/80 mb-8 max-w-sm">
               Join the employers shaping early access to Apreo
             </p>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <input
-                className="w-full bg-white border-none rounded-lg p-4 focus:ring-4 focus:ring-primary/20"
-                placeholder="Work Email"
-                type="email"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full bg-on-secondary-container text-white font-headline font-black py-4 rounded-lg hover:scale-95 transition-transform uppercase"
-              >
-                Request Early Access
-              </button>
-            </form>
+            <a
+              href="/login?role=employer"
+              className="w-full bg-on-secondary-container text-white font-headline font-black py-4 rounded-lg hover:scale-95 transition-transform uppercase text-center block"
+            >
+              Sign In as Employer
+            </a>
           </div>
           <span className="material-symbols-outlined absolute -bottom-10 -right-10 text-[200px] text-on-secondary-container/5 -rotate-12 group-hover:rotate-0 transition-transform duration-700">
             construction
@@ -46,20 +36,12 @@ export function PilotSection() {
               Connect your top students with vetted Victorian employers looking
               for exactly what you teach.
             </p>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <input
-                className="w-full bg-white border-none rounded-lg p-4 focus:ring-4 focus:ring-primary/20"
-                placeholder="College / Training Center Name"
-                type="text"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full border-2 border-primary text-primary font-headline font-black py-4 rounded-lg hover:bg-primary hover:text-white transition-all uppercase"
-              >
-                Join Partner Waitlist
-              </button>
-            </form>
+            <a
+              href="/login?role=provider"
+              className="w-full border-2 border-primary text-primary font-headline font-black py-4 rounded-lg hover:bg-primary hover:text-white transition-all uppercase text-center block"
+            >
+              Sign In as Training Provider
+            </a>
           </div>
           <span className="material-symbols-outlined absolute -bottom-10 -right-10 text-[200px] text-primary/5 -rotate-12 group-hover:rotate-0 transition-transform duration-700">
             school

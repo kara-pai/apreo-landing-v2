@@ -38,7 +38,7 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <a
-            href="#employers"
+            href="/login?role=employer"
             className="hidden sm:block bg-[#FFD600] text-[#212121] font-headline font-black px-6 py-2 rounded-lg hover:scale-95 transition-transform active:transition-transform duration-150"
           >
             Hire Apprentices
@@ -68,7 +68,7 @@ export function Header() {
             </a>
           ))}
           <a
-            href="#employers"
+            href="/login?role=employer"
             className="block sm:hidden bg-[#FFD600] text-[#212121] font-headline font-black px-4 py-2 rounded-lg text-center mt-4"
             onClick={() => setMenuOpen(false)}
           >
