@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 
 const SIDEBAR_NAV = [
   { icon: "dashboard", label: "Overview", href: "#", active: true },
@@ -53,9 +54,7 @@ export default function DashboardLayout({
               {isProvider ? "Dashboard" : "Students"}
             </span>
           </div>
-          <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border-2 border-white/20 text-sm font-black">
-            {isProvider ? "TP" : "EP"}
-          </div>
+          <UserButton />
         </div>
       </header>
 

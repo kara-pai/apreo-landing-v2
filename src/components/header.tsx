@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Show, UserButton } from "@clerk/nextjs";
 
 const NAV_LINKS = [
   { label: "How It Works", href: "#how-it-works" },
@@ -37,12 +38,23 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <a
-            href="/login?role=employer"
-            className="hidden sm:block bg-[#FFD600] text-[#212121] font-headline font-black px-6 py-2 rounded-lg hover:scale-95 transition-transform active:transition-transform duration-150"
-          >
-            Hire Apprentices
-          </a>
+          <Show when="signed-out">
+            <a
+              href="/login?role=employer"
+              className="hidden sm:block bg-[#FFD600] text-[#212121] font-headline font-black px-6 py-2 rounded-lg hover:scale-95 transition-transform active:transition-transform duration-150"
+            >
+              Hire Apprentices
+            </a>
+          </Show>
+          <Show when="signed-in">
+            <a
+              href="/dashboard/employer"
+              className="hidden sm:block bg-[#FFD600] text-[#212121] font-headline font-black px-6 py-2 rounded-lg hover:scale-95 transition-transform active:transition-transform duration-150"
+            >
+              Dashboard
+            </a>
+            <UserButton />
+          </Show>
           <button
             className="md:hidden text-white"
             onClick={() => setMenuOpen(!menuOpen)}
