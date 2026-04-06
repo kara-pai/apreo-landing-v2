@@ -61,8 +61,11 @@ export function LoginContent() {
           <div className="relative z-10">
             <Link
               href="/"
-              className="text-on-primary text-4xl font-headline font-bold tracking-tighter mb-16 block"
+              className="flex items-center gap-4 text-on-primary text-4xl font-headline font-bold tracking-tighter mb-16"
             >
+              <span className="material-symbols-outlined text-white text-3xl">
+                grid_view
+              </span>
               APREO
             </Link>
             <div className="space-y-6">
@@ -152,8 +155,11 @@ export function LoginContent() {
             <div className="md:hidden flex justify-center mb-12">
               <Link
                 href="/"
-                className="text-primary font-headline font-bold text-3xl tracking-tighter"
+                className="flex items-center gap-3 text-primary font-headline font-bold text-3xl tracking-tighter"
               >
+                <span className="material-symbols-outlined text-primary text-2xl">
+                  grid_view
+                </span>
                 APREO
               </Link>
             </div>
@@ -300,7 +306,12 @@ export function LoginContent() {
       {/* Footer */}
       <footer className="w-full py-8 px-6 bg-zinc-900 text-sm tracking-wide relative z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-lg font-black text-white">APREO</div>
+          <div className="flex items-center gap-2 text-lg font-black text-white">
+            <span className="material-symbols-outlined text-white text-xl">
+              grid_view
+            </span>
+            APREO
+          </div>
           <div className="flex gap-8 text-zinc-400">
             <a
               className="hover:text-white transition-all opacity-80 hover:opacity-100"
