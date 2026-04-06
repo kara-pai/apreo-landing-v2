@@ -18,7 +18,6 @@ export function LoginContent() {
     }
   }, [searchParams]);
 
-  // Store selected role so post-login redirect can use it
   useEffect(() => {
     localStorage.setItem("apreo_selected_role", role);
   }, [role]);
@@ -31,7 +30,6 @@ export function LoginContent() {
       <main className="flex min-h-screen flex-col md:flex-row overflow-hidden">
         {/* Left Column: Bold branded panel */}
         <section className="relative hidden md:flex md:w-[45%] lg:w-[40%] bg-primary overflow-hidden flex-col justify-between p-12">
-          {/* Background Grid */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="h-full p-4 opacity-40 grid grid-cols-4 grid-rows-4 gap-4">
               <div className="bg-secondary-container rounded-lg col-span-2 row-span-1 shadow-2xl" />
@@ -44,7 +42,6 @@ export function LoginContent() {
             </div>
           </div>
 
-          {/* Content Overlay */}
           <div className="relative z-10">
             <Link
               href="/"
@@ -109,7 +106,6 @@ export function LoginContent() {
 
         {/* Right Column: Authentication area */}
         <section className="flex-1 relative flex flex-col justify-center items-center p-6 md:p-12 lg:p-24 bg-surface overflow-hidden">
-          {/* Background Layers */}
           <div
             className="absolute inset-0 z-0"
             style={{
@@ -127,12 +123,12 @@ export function LoginContent() {
               opacity: 0.08,
             }}
           />
-
-          {/* Background Shapes */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute top-[-5%] left-[-10%] w-[400px] h-[400px] bg-tertiary/5 rounded-full blur-[100px]" />
             <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary-container/10 rounded-full blur-[120px]" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 rounded-[100%] rotate-45 blur-[150px]" />
+            <div className="absolute top-0 right-0 w-full h-px bg-gradient-to-l from-primary/20 to-transparent" />
+            <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-primary/20 to-transparent" />
           </div>
 
           <div className="w-full max-w-md relative z-10">
@@ -225,24 +221,39 @@ export function LoginContent() {
               </button>
             </div>
 
-            {/* Clerk Sign-In Component */}
-            <div className="flex justify-center">
+            {/* Clerk Sign-In — styled to match APREO design */}
+            <div className="clerk-container">
               <SignIn
                 forceRedirectUrl={afterSignInUrl}
                 appearance={{
                   elements: {
                     rootBox: "w-full",
-                    cardBox: "w-full shadow-none",
-                    card: "w-full bg-white/70 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,75,226,0.1)] border border-white/80 rounded-2xl",
+                    cardBox: "w-full shadow-none border-none",
+                    card: "w-full bg-white/70 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,75,226,0.1)] border border-white/80 rounded-2xl p-8",
                     headerTitle: "hidden",
                     headerSubtitle: "hidden",
+                    header: "hidden",
                     socialButtonsBlockButton:
-                      "bg-white border border-outline-variant/20 hover:bg-surface-container-low font-bold",
+                      "bg-white border border-outline-variant/20 hover:bg-surface-container-low font-bold rounded-lg py-3",
+                    socialButtonsBlockButtonText: "font-bold text-sm",
+                    dividerLine: "bg-outline-variant/30",
+                    dividerText:
+                      "text-on-surface-variant text-sm font-bold uppercase tracking-widest",
+                    formFieldLabel:
+                      "text-xs font-bold uppercase tracking-widest text-on-surface-variant",
                     formFieldInput:
-                      "bg-white border-2 border-transparent focus:border-primary rounded-lg",
+                      "bg-white border-2 border-transparent focus:border-primary focus:ring-0 h-14 rounded-lg text-on-surface",
                     formButtonPrimary:
-                      "bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-headline font-bold text-lg rounded-lg",
-                    footerActionLink: "text-primary font-bold",
+                      "bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-headline font-bold text-lg rounded-lg py-4 normal-case",
+                    footerAction: "hidden",
+                    footer: "hidden",
+                    backLink: "text-primary font-bold",
+                    identityPreview: "bg-surface-container rounded-lg",
+                    alert: "rounded-lg",
+                  },
+                  layout: {
+                    socialButtonsPlacement: "top",
+                    showOptionalFields: false,
                   },
                 }}
               />
@@ -252,6 +263,15 @@ export function LoginContent() {
               <p className="text-on-surface-variant text-sm flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-sm">lock</span>
                 Passwordless sign-in for secure access.
+              </p>
+              <p className="mt-12 text-xs text-on-surface-variant">
+                Don&apos;t have an account?{" "}
+                <a
+                  className="text-primary font-bold hover:underline"
+                  href="#"
+                >
+                  Join the Network
+                </a>
               </p>
             </div>
           </div>
@@ -268,22 +288,13 @@ export function LoginContent() {
             APREO
           </div>
           <div className="flex gap-8 text-zinc-400">
-            <a
-              className="hover:text-white transition-all opacity-80 hover:opacity-100"
-              href="#"
-            >
+            <a className="hover:text-white transition-all opacity-80 hover:opacity-100" href="#">
               Terms of Service
             </a>
-            <a
-              className="hover:text-white transition-all opacity-80 hover:opacity-100"
-              href="#"
-            >
+            <a className="hover:text-white transition-all opacity-80 hover:opacity-100" href="#">
               Privacy Policy
             </a>
-            <a
-              className="hover:text-white transition-all opacity-80 hover:opacity-100"
-              href="#"
-            >
+            <a className="hover:text-white transition-all opacity-80 hover:opacity-100" href="#">
               Help Center
             </a>
           </div>
