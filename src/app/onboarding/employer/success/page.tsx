@@ -34,10 +34,10 @@ export default function Success() {
               <span className="material-symbols-outlined">calendar_today</span>
             </button>
             <Link
-              href="/"
+              href="/dashboard/employer"
               className="bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-lg font-headline font-bold text-lg uppercase tracking-tight flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
             >
-              Return Home
+              Go to Dashboard
             </Link>
           </div>
         </div>

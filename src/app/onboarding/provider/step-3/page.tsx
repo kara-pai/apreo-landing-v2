@@ -16,7 +16,7 @@ export default function ProviderStep3() {
   }, []);
 
   const handleSubmit = () => {
-    router.push("/onboarding/provider/dashboard");
+    router.push("/dashboard/provider");
   };
 
   return (
