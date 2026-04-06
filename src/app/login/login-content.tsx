@@ -17,11 +17,11 @@ const GOOGLE_ICON = (
       fill="#34A853"
     />
     <path
-      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
       fill="#FBBC05"
     />
     <path
-      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
       fill="#EA4335"
     />
   </svg>
@@ -40,217 +40,293 @@ export function LoginContent() {
   }, [searchParams]);
 
   return (
-    <div className="flex flex-col min-h-screen max-w-md mx-auto relative overflow-hidden bg-surface-container-low">
-      {/* Header */}
-      <header className="bg-primary pt-8 pb-12 px-6 flex flex-col gap-8 relative overflow-hidden">
-        <div className="flex justify-between items-center z-10">
-          <Link href="/" className="flex items-center gap-4">
-            <span
-              className="material-symbols-outlined text-white text-2xl"
-              style={{ fontVariationSettings: "'FILL' 1" }}
-            >
-              grid_view
-            </span>
-            <h1 className="text-3xl font-black tracking-tighter text-white font-headline">
-              APREO
-            </h1>
-          </Link>
-          <Link
-            href="/"
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary-container/20 text-surface"
-            aria-label="Back to home"
-          >
-            <span className="material-symbols-outlined">close</span>
-          </Link>
-        </div>
-
-        <div className="z-10 mt-4">
-          <h1 className="font-headline font-bold text-5xl leading-[0.9] text-surface-bright uppercase tracking-tighter mb-4">
-            Access <br />
-            Apreo
-          </h1>
-          <p className="text-on-primary text-lg font-medium leading-tight max-w-[85%] opacity-90">
-            Sign in to review matches, manage hiring, or partner on
-            apprenticeship pathways.
-          </p>
-        </div>
-
-        {/* Kinetic Background */}
-        <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-secondary rounded-full opacity-20 blur-3xl" />
-        <div className="absolute top-0 right-0 w-32 h-32 bg-tertiary-container/10 -skew-x-12 translate-x-16" />
-      </header>
-
-      {/* Main Auth Content */}
-      <main className="flex-1 -mt-6 bg-surface-container-lowest rounded-t-[2rem] px-6 pt-10 pb-12 z-20 shadow-xl">
-        {/* Role Selection */}
-        <div className="mb-8">
-          <label className="text-xs font-bold font-headline text-on-surface-variant uppercase tracking-wider pl-1 block mb-3">
-            Select your role
-          </label>
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() => setRole("employer")}
-              className={`flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all ${
-                role === "employer"
-                  ? "border-primary bg-primary/5 text-primary"
-                  : "border-surface-container-high bg-white hover:border-primary/30 text-on-surface-variant"
-              }`}
-            >
-              <span
-                className="material-symbols-outlined text-2xl"
-                style={{
-                  fontVariationSettings:
-                    role === "employer" ? "'FILL' 1" : "'FILL' 0",
-                }}
-              >
-                precision_manufacturing
-              </span>
-              <span className="font-headline font-bold text-sm uppercase">
-                Employer
-              </span>
-            </button>
-            <button
-              onClick={() => setRole("provider")}
-              className={`flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all ${
-                role === "provider"
-                  ? "border-primary bg-primary/5 text-primary"
-                  : "border-surface-container-high bg-white hover:border-primary/30 text-on-surface-variant"
-              }`}
-            >
-              <span
-                className="material-symbols-outlined text-2xl"
-                style={{
-                  fontVariationSettings:
-                    role === "provider" ? "'FILL' 1" : "'FILL' 0",
-                }}
-              >
-                school
-              </span>
-              <span className="font-headline font-bold text-sm uppercase text-center leading-none">
-                Training Provider
-              </span>
-            </button>
-          </div>
-        </div>
-
-        {/* Auth Actions */}
-        <div className="flex flex-col gap-6">
-          {/* Google Auth */}
-          <button className="w-full h-16 bg-primary hover:bg-primary-dim transition-colors rounded-xl flex items-center justify-center gap-3 px-6 shadow-lg shadow-primary/10">
-            <div className="bg-white p-1.5 rounded-lg flex items-center justify-center">
-              {GOOGLE_ICON}
+    <div className="bg-surface-container-lowest font-body text-on-surface">
+      <main className="flex min-h-screen flex-col md:flex-row overflow-hidden">
+        {/* Left Column: Bold branded panel */}
+        <section className="relative hidden md:flex md:w-[45%] lg:w-[40%] bg-primary overflow-hidden flex-col justify-between p-12">
+          {/* Background Grid */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="h-full p-4 opacity-40 grid grid-cols-4 grid-rows-4 gap-4">
+              <div className="bg-secondary-container rounded-lg col-span-2 row-span-1 shadow-2xl" />
+              <div className="bg-tertiary rounded-lg col-span-1 row-span-3 shadow-2xl" />
+              <div className="bg-primary-container rounded-lg col-span-1 row-span-1 shadow-2xl" />
+              <div className="bg-on-primary/10 border border-white/20 backdrop-blur-sm rounded-lg col-span-2 row-span-2" />
+              <div className="bg-secondary rounded-lg col-span-1 row-span-2 shadow-2xl" />
+              <div className="bg-tertiary-container rounded-lg col-span-1 row-span-1 shadow-2xl" />
+              <div className="bg-white/5 rounded-lg col-span-3 row-span-1" />
             </div>
-            <span className="text-on-primary font-headline font-bold text-lg">
-              Continue with Google
-            </span>
-          </button>
-
-          {/* Divider */}
-          <div className="flex items-center gap-4 py-2">
-            <div className="flex-1 h-[2px] bg-surface-container-high" />
-            <span className="font-headline font-bold text-on-surface-variant uppercase tracking-widest text-sm">
-              or
-            </span>
-            <div className="flex-1 h-[2px] bg-surface-container-high" />
           </div>
 
-          {/* Email Input Flow */}
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold font-headline text-on-surface-variant uppercase tracking-wider pl-1">
-                Work Email Address
-              </label>
-              <div className="relative group">
-                <input
-                  className="w-full h-14 px-4 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary font-medium text-on-surface placeholder:text-outline transition-all"
-                  placeholder="name@company.com"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <span className="absolute right-4 top-4 material-symbols-outlined text-outline group-focus-within:text-primary">
-                  mail
+          {/* Content Overlay */}
+          <div className="relative z-10">
+            <Link
+              href="/"
+              className="text-on-primary text-4xl font-headline font-bold tracking-tighter mb-16 block"
+            >
+              APREO
+            </Link>
+            <div className="space-y-6">
+              <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg -rotate-1 transform border border-white/20">
+                <span className="font-headline font-bold text-2xl text-on-primary uppercase block">
+                  Trade-Specific Matching
                 </span>
+                <p className="text-on-primary/80 mt-2">
+                  Precision alignment between industrial talent and project
+                  requirements.
+                </p>
+              </div>
+              <div className="bg-secondary-container p-6 rounded-lg rotate-1 transform shadow-2xl">
+                <span className="font-headline font-bold text-2xl text-on-secondary-container uppercase block">
+                  Readiness-Based Profiles
+                </span>
+                <p className="text-on-secondary-container/80 mt-2">
+                  Validated skill sets verified by industry veterans.
+                </p>
+              </div>
+              <div className="bg-tertiary p-6 rounded-lg -rotate-1 transform shadow-2xl">
+                <span className="font-headline font-bold text-2xl text-on-tertiary uppercase block">
+                  Built for the Trades
+                </span>
+                <p className="text-on-tertiary/80 mt-2">
+                  Infrastructure-ready recruitment for modern Australian
+                  worksites.
+                </p>
               </div>
             </div>
+          </div>
 
-            <button className="w-full h-16 bg-secondary-container hover:bg-secondary-fixed-dim transition-all rounded-xl flex items-center justify-center gap-2 group">
-              <span className="text-on-secondary-container font-headline font-bold text-lg">
-                Continue with Email
-              </span>
-              <span className="material-symbols-outlined text-on-secondary-container group-hover:translate-x-1 transition-transform">
-                arrow_forward
-              </span>
-            </button>
+          <div className="relative z-10 mt-auto">
+            <div className="flex items-center gap-4 bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+              <div className="w-12 h-12 bg-white rounded-full overflow-hidden ring-2 ring-white/20">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  alt="Professional construction site supervisor"
+                  className="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM1tgtJvE3wGSQvOxA8ZfdDJno4SD7CjHy8SVcGjr0uyHd9nI4IbcbJ6Vn2RwFUQLFxwYerrSCynoIM7P38my1L2IQRdi5BMU2tSYF1EvDN-3EcyzKK5ASCK0iF1wCRcjKSRnBE9U1rtSXTChAsiUSGJunid9Dy3ivO54Y3nI8lgOu9w6eft-mn-qgiR-ApYpV2QlNl9MULs4fT_zIZqiheQkFIRl328WOeQmjWt7lyEaBufrMMiQci2jp4zQNKMCq6_S8xt8rIiY"
+                />
+              </div>
+              <div>
+                <p className="text-on-primary font-bold text-sm">
+                  Supporting Melbourne&apos;s growth.
+                </p>
+                <p className="text-on-primary/60 text-xs">
+                  Apreo Industrial Ecosystem v2.4
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div className="flex gap-3 px-1">
-              <span
-                className="material-symbols-outlined text-tertiary text-lg shrink-0"
-                style={{ fontVariationSettings: "'FILL' 1" }}
+        {/* Right Column: Authentication area */}
+        <section className="flex-1 relative flex flex-col justify-center items-center p-6 md:p-12 lg:p-24 bg-surface overflow-hidden">
+          {/* Background Layers */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(0,75,226,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,75,226,0.05) 1px, transparent 1px)",
+              backgroundSize: "80px 80px",
+            }}
+          />
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(#004be2 0.5px, transparent 0.5px)",
+              backgroundSize: "32px 32px",
+              opacity: 0.08,
+            }}
+          />
+
+          {/* Dynamic Modular Background Shapes */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute top-[-5%] left-[-10%] w-[400px] h-[400px] bg-tertiary/5 rounded-full blur-[100px]" />
+            <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary-container/10 rounded-full blur-[120px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/5 rounded-[100%] rotate-45 blur-[150px]" />
+            <div className="absolute top-0 right-0 w-full h-px bg-gradient-to-l from-primary/20 to-transparent" />
+            <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-primary/20 to-transparent" />
+          </div>
+
+          <div className="w-full max-w-md relative z-10">
+            {/* Brand Mobile Header */}
+            <div className="md:hidden flex justify-center mb-12">
+              <Link
+                href="/"
+                className="text-primary font-headline font-bold text-3xl tracking-tighter"
               >
-                info
-              </span>
-              <p className="text-sm text-on-surface-variant leading-relaxed">
-                We&apos;ll send a secure sign-in link or code to your email. No
-                password required.
+                APREO
+              </Link>
+            </div>
+
+            <div className="mb-10 text-center md:text-left">
+              <h1 className="font-headline font-bold text-4xl text-on-surface mb-3 tracking-tight">
+                Access Apreo
+              </h1>
+              <p className="text-on-surface-variant text-lg">
+                Sign in to review matches, manage hiring, or partner on
+                apprenticeship pathways.
+              </p>
+            </div>
+
+            {/* Role Selection */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <button
+                onClick={() => setRole("employer")}
+                className={`flex flex-col items-center justify-center p-4 border-2 backdrop-blur-sm rounded-xl transition-all active:scale-95 ${
+                  role === "employer"
+                    ? "border-primary bg-white/90 shadow-sm hover:shadow-lg"
+                    : "border-transparent bg-white/60 hover:border-outline-variant"
+                }`}
+              >
+                <span
+                  className={`material-symbols-outlined mb-2 ${
+                    role === "employer"
+                      ? "text-primary"
+                      : "text-on-surface-variant"
+                  }`}
+                  style={{
+                    fontVariationSettings:
+                      role === "employer" ? "'FILL' 1" : "'FILL' 0",
+                  }}
+                >
+                  business_center
+                </span>
+                <span
+                  className={`font-bold text-sm uppercase tracking-wider ${
+                    role === "employer"
+                      ? "text-primary"
+                      : "text-on-surface-variant"
+                  }`}
+                >
+                  Employer
+                </span>
+              </button>
+              <button
+                onClick={() => setRole("provider")}
+                className={`flex flex-col items-center justify-center p-4 border-2 backdrop-blur-sm rounded-xl transition-all active:scale-95 ${
+                  role === "provider"
+                    ? "border-primary bg-white/90 shadow-sm hover:shadow-lg"
+                    : "border-transparent bg-white/60 hover:border-outline-variant"
+                }`}
+              >
+                <span
+                  className={`material-symbols-outlined mb-2 ${
+                    role === "provider"
+                      ? "text-primary"
+                      : "text-on-surface-variant"
+                  }`}
+                  style={{
+                    fontVariationSettings:
+                      role === "provider" ? "'FILL' 1" : "'FILL' 0",
+                  }}
+                >
+                  school
+                </span>
+                <span
+                  className={`font-bold text-sm uppercase tracking-wider ${
+                    role === "provider"
+                      ? "text-primary"
+                      : "text-on-surface-variant"
+                  }`}
+                >
+                  Provider
+                </span>
+              </button>
+            </div>
+
+            {/* Auth Buttons */}
+            <div className="space-y-4 bg-white/70 backdrop-blur-xl p-8 rounded-2xl shadow-[0_20px_50px_rgba(0,75,226,0.1)] border border-white/80">
+              <button className="w-full flex items-center justify-center gap-3 bg-white text-on-surface font-bold py-4 rounded-lg shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+                {GOOGLE_ICON}
+                Continue with Google
+              </button>
+
+              <div className="flex items-center gap-4 py-2">
+                <div className="h-px bg-outline-variant/30 flex-1" />
+                <span className="text-on-surface-variant text-sm font-bold uppercase tracking-widest">
+                  or
+                </span>
+                <div className="h-px bg-outline-variant/30 flex-1" />
+              </div>
+
+              <form
+                className="space-y-4"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <div className="space-y-1">
+                  <label
+                    className="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1"
+                    htmlFor="email"
+                  >
+                    Work Email
+                  </label>
+                  <input
+                    className="w-full bg-white border-2 border-transparent focus:border-primary focus:ring-0 h-14 px-4 rounded-lg text-on-surface transition-all shadow-sm"
+                    id="email"
+                    placeholder="name@company.com.au"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <button
+                  className="w-full bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-headline font-bold text-lg py-4 rounded-lg transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
+                  type="submit"
+                >
+                  Continue with Email
+                </button>
+              </form>
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-on-surface-variant text-sm flex items-center justify-center gap-2">
+                <span className="material-symbols-outlined text-sm">lock</span>
+                Passwordless sign-in for secure access.
+              </p>
+              <p className="mt-12 text-xs text-on-surface-variant">
+                Don&apos;t have an account?{" "}
+                <a
+                  className="text-primary font-bold hover:underline"
+                  href="#"
+                >
+                  Join the Network
+                </a>
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Trust Elements */}
-        <div className="mt-16 grid grid-cols-2 gap-4">
-          <div className="bg-surface-container-high p-4 rounded-xl relative overflow-hidden -rotate-[2deg]">
-            <span className="material-symbols-outlined text-primary mb-2">
-              handyman
-            </span>
-            <h3 className="font-headline font-bold text-sm leading-tight text-on-surface uppercase">
-              Trade-Specific
-              <br />
-              Matching
-            </h3>
-            <div className="absolute -right-2 -bottom-2 w-12 h-12 bg-primary/5 rounded-full" />
-          </div>
-          <div className="bg-tertiary-container p-4 rounded-xl relative overflow-hidden rotate-[2deg]">
-            <span
-              className="material-symbols-outlined text-on-tertiary-container mb-2"
-              style={{ fontVariationSettings: "'FILL' 1" }}
-            >
-              verified_user
-            </span>
-            <h3 className="font-headline font-bold text-sm leading-tight text-on-tertiary-container uppercase">
-              Readiness-Based
-              <br />
-              Profiles
-            </h3>
-          </div>
-        </div>
-
-        {/* Footer Links */}
-        <div className="mt-12 flex flex-col items-center gap-4">
-          <div className="flex gap-6 text-xs font-bold font-headline uppercase tracking-widest text-outline">
-            <a className="hover:text-primary transition-colors" href="#">
-              Privacy
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              Terms
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              Help
-            </a>
-          </div>
-          <p className="text-xs text-outline-variant font-medium">
-            &copy; {new Date().getFullYear()} Apreo Apprenticeship Systems
-          </p>
-        </div>
+        </section>
       </main>
 
-      {/* Floating Sticker */}
-      <div className="absolute top-[62%] -right-4 z-30 rotate-[2deg]">
-        <div className="bg-secondary-container text-on-secondary-container px-4 py-2 rounded-lg font-headline font-black text-xs uppercase shadow-xl border-4 border-surface-container-lowest">
-          New: Path Matching
+      {/* Footer */}
+      <footer className="w-full py-8 px-6 bg-zinc-900 text-sm tracking-wide relative z-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-lg font-black text-white">APREO</div>
+          <div className="flex gap-8 text-zinc-400">
+            <a
+              className="hover:text-white transition-all opacity-80 hover:opacity-100"
+              href="#"
+            >
+              Terms of Service
+            </a>
+            <a
+              className="hover:text-white transition-all opacity-80 hover:opacity-100"
+              href="#"
+            >
+              Privacy Policy
+            </a>
+            <a
+              className="hover:text-white transition-all opacity-80 hover:opacity-100"
+              href="#"
+            >
+              Help Center
+            </a>
+          </div>
+          <div className="text-zinc-500 uppercase tracking-tighter text-xs">
+            &copy; {new Date().getFullYear()} APREO PLATFORM. ALL RIGHTS
+            RESERVED.
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
