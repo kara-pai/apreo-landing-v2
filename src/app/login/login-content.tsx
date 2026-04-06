@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 type Role = "employer" | "provider";
@@ -29,8 +29,18 @@ const GOOGLE_ICON = (
 
 export function LoginContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [role, setRole] = useState<Role>("employer");
   const [email, setEmail] = useState("");
+
+  const handleLogin = (loginEmail: string) => {
+    localStorage.setItem("apreo_user", JSON.stringify({ email: loginEmail, role }));
+    const dest =
+      role === "employer"
+        ? "/onboarding/employer"
+        : "/onboarding/employer"; // provider flow TBD
+    router.push(dest);
+  };
 
   useEffect(() => {
     const param = searchParams.get("role");
@@ -242,7 +252,10 @@ export function LoginContent() {
 
             {/* Auth Buttons */}
             <div className="space-y-4 bg-white/70 backdrop-blur-xl p-8 rounded-2xl shadow-[0_20px_50px_rgba(0,75,226,0.1)] border border-white/80">
-              <button className="w-full flex items-center justify-center gap-3 bg-white text-on-surface font-bold py-4 rounded-lg shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+              <button
+                onClick={() => handleLogin("demo@google.com")}
+                className="w-full flex items-center justify-center gap-3 bg-white text-on-surface font-bold py-4 rounded-lg shadow-sm border border-outline-variant/20 hover:bg-surface-container-low transition-colors active:scale-[0.98]"
+              >
                 {GOOGLE_ICON}
                 Continue with Google
               </button>
@@ -257,7 +270,10 @@ export function LoginContent() {
 
               <form
                 className="space-y-4"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (email) handleLogin(email);
+                }}
               >
                 <div className="space-y-1">
                   <label
